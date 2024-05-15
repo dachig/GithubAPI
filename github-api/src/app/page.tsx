@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { InputUsername } from "./components/inputUsername";
 
 export default function Home() {
   return (
@@ -12,23 +12,7 @@ export default function Home() {
             Discover public Github repositories by simply entering an existing
             username below.
           </p>
-          <div className="mt-6 flex max-w-md gap-x-4">
-            <label htmlFor="github-username" className="sr-only">
-              Github username
-            </label>
-            <input
-              id="github-username"
-              name="email"
-              required
-              className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-              placeholder="Enter a username"
-            />
-            <button
-              className="flex-none rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-            >
-              Search
-            </button>
-          </div>
+          <InputUsername />
         </div>
         <div
           className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6"
