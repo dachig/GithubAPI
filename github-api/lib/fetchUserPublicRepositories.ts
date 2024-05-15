@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
 
-export async function fetchUserPublicRepositories(user:string) {
+export async function fetchUserPublicRepositories(user: string) {
   const octokit = new Octokit({
     auth: process.env.GITHUB_ACCESS_TOKEN,
   });
@@ -10,5 +10,5 @@ export async function fetchUserPublicRepositories(user:string) {
       "X-GitHub-Api-Version": "2022-11-28",
     },
   });
-  return { user, repositories };
+  return { octokit, user, repositories };
 }
