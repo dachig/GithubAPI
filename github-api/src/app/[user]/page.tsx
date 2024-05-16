@@ -18,10 +18,10 @@ export default async function UserPage({
           <div className="flex items-start md:items-center flex-col gap-4">
             <NextBreadcrumb
               homeElement={<FaHome className="text-xl" />}
-              separator={<TbMathGreater className="text-sm mt-1" />}
-              activeClasses="text-primary"
+              separator={<TbMathGreater className="text-sm mt-1 text-gray-400" />}
+              activeClasses="text-blue-600"
               containerClasses="flex mx-auto"
-              listClasses="hover:underline mx-2 font-medium text-sm"
+              listClasses="hover:underline mx-4 font-medium text-sm"
               capitalizeLinks
             />
             <RepositoryAvatar

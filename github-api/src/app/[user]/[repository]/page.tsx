@@ -14,10 +14,10 @@ export default async function UserPage({
     <main className="relative isolate overflow-hidden py-4 md:py-8 lg:py-16">
       <NextBreadcrumb
         homeElement={<FaHome className="text-lg" />}
-        separator={<TbMathGreater className="text-sm mt-1" />}
-        activeClasses="text-primary"
+        separator={<TbMathGreater className="text-sm mt-1 text-gray-400" />}
+        activeClasses="text-blue-600"
         containerClasses="flex max-w-5xl px-6 py-3 mx-auto"
-        listClasses="hover:underline mx-2 font-medium text-sm"
+        listClasses="hover:underline mx-4 font-medium text-sm"
         capitalizeLinks
       />
       <div className="mx-auto gap-y-16 px-8 max-w-5xl">
