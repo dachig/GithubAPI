@@ -1,4 +1,3 @@
-// "use client";
 import Link from "next/link";
 import { fetchUserPublicRepositories } from "../../../lib/fetchUserPublicRepositories";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -14,7 +13,7 @@ export default async function UserPage({
   params: { user: string };
 }) {
   const repositories = await fetchUserPublicRepositories(params.user);
-  // console.log(repositories.repositories.data[0]);
+  console.log(repositories.repositories.data[3]);
   return (
     <main className="relative isolate overflow-hidden py-4 md:py-8 lg:py-16">
       <div className="mx-auto gap-x-1 gap-y-16 px-4 max-w-7xl">
