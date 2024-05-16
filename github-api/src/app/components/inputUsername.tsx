@@ -44,11 +44,12 @@ export function InputUsername() {
           id="github-username"
           required
           onChange={(e) => setUsername(e.target.value)}
-          type="text"
+          type="search"
           placeholder="Enter a username"
           className="bg-white/5 text-white"
         />
         <Button
+          type="button"
           onClick={() => isUsernameValid(username)}
           className="px-6 text-white hover:bg-primary-foreground"
         >
