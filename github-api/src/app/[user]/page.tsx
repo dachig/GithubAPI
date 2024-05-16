@@ -14,27 +14,27 @@ export default async function UserPage({
   const repositories = await fetchUserPublicRepositories(params.user);
   console.log(repositories.repositories.data[0]);
   return (
-    <main className="relative isolate overflow-hidden py-16 sm:py-24 lg:py-32 h-screen">
-      <div className="mx-auto max-w-2xl gap-x-8 gap-y-16 px-4 lg:max-w-none">
-        <div className="max-w-xl lg:max-w-7xl mx-auto flex gap-12">
-          <div className="flex flex-col">
-            <Avatar className="w-80 h-80">
+    <main className="relative isolate overflow-hidden py-4 md:py-8 lg:py-16">
+      <div className="mx-auto gap-x-1 gap-y-16 px-4 max-w-7xl">
+        <div className="mx-auto flex flex-col md:flex-row gap-4">
+          <div className="flex items-center gap-2 md:flex-col">
+            <Avatar className="w-24 h-24 md:w-44 md:h-44 lg:w-80 lg:h-80">
               <AvatarImage
                 src={`${repositories.repositories.data[0].owner.avatar_url}`}
                 alt="github-avatar"
               />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <h2 className=" tracking-tight text-primary text-lg">
+            <h2 className="tracking-tight text-md lg:text-lg text-gray-500">
               {params.user}
             </h2>
           </div>
 
-          <div className="flex flex-col gap-4">
-            <h2 className="text-lg font-semibold tracking-tight text-primary ">
+          <div className="flex flex-col gap-1">
+            <h2 className="text-md lg:text-lg tracking-tight text-gray-500 ">
               Public repositories of {params.user}
             </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {repositories.repositories.data.map((v, index) => (
                 <Card key={index} className="p-4 flex flex-col gap-4">
                   <div className="flex justify-between">

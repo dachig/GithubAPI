@@ -15,11 +15,11 @@ export function InputUsername() {
         onChange={(e) => setUsername(e.target.value)}
         type="text"
         placeholder="Enter a username"
-        className="bg-white/5"
+        className="bg-white/5 text-white"
       />
       <Link href={`/${username}`}>
         <Button
-          className="px-6 text-black hover:bg-primary-foreground"
+          className="px-6 text-white hover:bg-primary-foreground"
         >
           Search
         </Button>
