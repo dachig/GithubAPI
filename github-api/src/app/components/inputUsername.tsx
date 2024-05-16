@@ -25,7 +25,7 @@ export function InputUsername() {
         setNotValidMessage("This user has no public repositories.");
         setTimeout(() => {
           setNotValidMessage("");
-        }, 3000);
+        }, 2000);
       } else {
         router.push(`/${username}`);
       }
@@ -33,7 +33,7 @@ export function InputUsername() {
       setNotValidMessage("This username does not exist.");
       setTimeout(() => {
         setNotValidMessage("");
-      }, 3000);
+      }, 2000);
     }
   }
 

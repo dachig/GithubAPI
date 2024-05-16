@@ -3,7 +3,7 @@ import { InputUsername } from "./components/inputUsername";
 export default function Home() {
   return (
     <main className="relative isolate overflow-hidden bg-gray-900 py-40 sm:py-64 h-screen">
-      <div className="mx-auto max-w-2xl gap-x-8 gap-y-16 px-8 lg:max-w-none">
+      <div className="mx-auto max-w-2xl gap-y-16 px-8 lg:max-w-none">
         <div className="max-w-xl lg:max-w-lg mx-auto">
           <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
             Github users API
