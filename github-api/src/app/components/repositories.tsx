@@ -10,7 +10,7 @@ export default function Repositories({ repositories, user }: any) {
       {repositories.repositories.data.map((repo:any , index: number) => (
         <Card key={index} className="p-4 flex flex-col gap-4">
           <div className="flex justify-between">
-            {repo.created_at == repo.updated_at ? (
+            {repo.size == 0 ? (
               <div className="text-blue-600 font-semibold text-sm flex flex-col">
                 <span>{repo.name}</span>
                 <span className="text-gray-400 text-xs font-normal">This repository has no commits</span>
@@ -18,7 +18,7 @@ export default function Repositories({ repositories, user }: any) {
             ) : (
               <Link
                 href={`/${user}/${repo.name}`}
-                className="text-blue-600 font-semibold text-sm hover:border-b-2 hover:border-blue-600"
+                className="text-blue-600 font-semibold text-sm hover:underline"
               >
                 {repo.name}
               </Link>
