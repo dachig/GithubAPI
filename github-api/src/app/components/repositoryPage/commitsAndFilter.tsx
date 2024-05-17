@@ -74,11 +74,12 @@ export default function CommitsAndFilter({ commits }: any) {
                   className="text-gray-900 hover:underline"
                   href={`/${commit.committer.login}`}
                 >
+                  {" "}
                   {commit.committer.login}
                 </Link>
               ) : (
                 commit.commit.committer?.name
-              )}
+              )}{" "}
               commited on {commit.commit.committer?.date?.substring(0, 10)}
             </span>
           </div>
