@@ -1,3 +1,4 @@
+"use client";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import { FaCode } from "react-icons/fa";
 export default function Repositories({ repositories, username }: any) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {repositories.repositories.data.map((repo: any, index: number) => (
+      {repositories.map((repo: any, index: number) => (
         <Card key={index} className="p-4 flex flex-col gap-4">
           <div className="flex justify-between">
             {repo.size == 0 ? (

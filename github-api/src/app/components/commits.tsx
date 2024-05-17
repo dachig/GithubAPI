@@ -9,13 +9,10 @@ import { Button } from "@/components/ui/button";
 export default function Commits({ commits }: any) {
   const [filterQuery, setFilterQuery] = useState("");
   const [filteredCommits, setFilteredCommits] = useState(commits);
-
-  function handleSearchChange(e: any) {
-    setFilterQuery(e.target.value);
+  function handleSearchChange() {
     const filteredCommits = commits.filter((v: any) =>
       v.commit.message.toLowerCase().includes(filterQuery.toLowerCase())
     );
-    console.log(filteredCommits);
     if (filterQuery.length > 0) {
       setFilteredCommits(filteredCommits);
     } else {
@@ -32,13 +29,23 @@ export default function Commits({ commits }: any) {
         <Input
           id="github-username"
           required
-          onChange={handleSearchChange}
+          onChange={(e) => setFilterQuery(e.target.value)}
           type="text"
           placeholder="Search commit"
           className="outline-none bg-white text-black rounded-r-none"
           value={filterQuery}
         />
-        <Button onClick={clearFilter} className="text-white rounded-l-none">
+        <Button
+          onClick={handleSearchChange}
+          className="text-white rounded-none"
+        >
+          Search
+        </Button>
+        <Button
+          variant="secondary"
+          onClick={clearFilter}
+          className="text-black rounded-l-none"
+        >
           clear
         </Button>
       </div>

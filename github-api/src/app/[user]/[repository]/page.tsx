@@ -13,7 +13,6 @@ export default async function UserPage({
     params.user,
     params.repository
   );
-  console.log(commitsData.commits.data.length);
   return (
     <main className="relative isolate overflow-hidden py-4 md:py-8 lg:py-16">
       <NextBreadcrumb

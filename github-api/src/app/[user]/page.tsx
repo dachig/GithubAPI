@@ -33,7 +33,7 @@ export default async function UserPage({
               Public repositories
             </h2>
             <Repositories
-              repositories={repositoriesData}
+              repositories={repositoriesData.repositories.data}
               username={params.user}
             />
           </div>
