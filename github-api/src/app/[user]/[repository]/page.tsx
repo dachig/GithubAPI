@@ -9,7 +9,7 @@ export default async function UserPage({
 }: {
   params: { user: string; repository: string };
 }) {
-  const commits = await fetchRepositoryCommits(params.user, params.repository);
+  const commitsData = await fetchRepositoryCommits(params.user, params.repository);
   return (
     <main className="relative isolate overflow-hidden py-4 md:py-8 lg:py-16">
       <NextBreadcrumb
@@ -26,7 +26,7 @@ export default async function UserPage({
             Commits for {params.repository}
           </h2>
           <hr />
-          <Commits commits={commits} />
+          <Commits commits={commitsData} />
         </div>
       </div>
     </main>

@@ -10,7 +10,7 @@ export default async function UserPage({
 }: {
   params: { user: string };
 }) {
-  const repositories = await fetchUserPublicRepositories(params.user);
+  const repositoriesData = await fetchUserPublicRepositories(params.user);
   return (
     <main className="relative isolate overflow-hidden py-4 md:py-8 lg:py-16">
       <div className="mx-auto gap-y-16 px-8 max-w-7xl">
@@ -18,22 +18,24 @@ export default async function UserPage({
           <div className="flex items-start md:items-center flex-col gap-4">
             <NextBreadcrumb
               homeElement={<FaHome className="text-xl" />}
-              separator={<TbMathGreater className="text-sm mt-1 text-gray-400" />}
+              separator={
+                <TbMathGreater className="text-sm mt-1 text-gray-400" />
+              }
               activeClasses="text-blue-600"
               containerClasses="flex mx-auto"
               listClasses="hover:underline mx-4 font-medium text-sm"
               capitalizeLinks
             />
-            <RepositoryAvatar
-              avatarUrl={repositories.repositories.data[0].owner.avatar_url}
-              user={params.user}
-            />
+            <RepositoryAvatar username={params.user} />
           </div>
           <div className="w-full flex flex-col gap-1">
             <h2 className="text-md lg:text-lg tracking-tight text-gray-500 ">
-              Public repositories of {params.user}
+              Public repositories
             </h2>
-            <Repositories repositories={repositories} user={params.user} />
+            <Repositories
+              repositories={repositoriesData}
+              username={params.user}
+            />
           </div>
         </div>
       </div>

@@ -4,20 +4,22 @@ import Link from "next/link";
 import { FaRegStar } from "react-icons/fa";
 import { FaCode } from "react-icons/fa";
 
-export default function Repositories({ repositories, user }: any) {
+export default function Repositories({ repositories, username }: any) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {repositories.repositories.data.map((repo:any , index: number) => (
+      {repositories.repositories.data.map((repo: any, index: number) => (
         <Card key={index} className="p-4 flex flex-col gap-4">
           <div className="flex justify-between">
             {repo.size == 0 ? (
               <div className="text-blue-600 font-semibold text-sm flex flex-col">
                 <span>{repo.name}</span>
-                <span className="text-gray-400 text-xs font-normal">This repository has no commits</span>
+                <span className="text-gray-400 text-xs font-normal">
+                  This repository has no commits
+                </span>
               </div>
             ) : (
               <Link
-                href={`/${user}/${repo.name}`}
+                href={`/${username}/${repo.name}`}
                 className="text-blue-600 font-semibold text-sm hover:underline"
               >
                 {repo.name}
