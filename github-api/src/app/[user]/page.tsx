@@ -1,7 +1,7 @@
-import { fetchUserPublicRepositories } from "../../../lib/fetchUserPublicRepositories";
-import Repositories from "../components/repositories";
-import RepositoryAvatar from "../components/repositoryAvatar";
-import NextBreadcrumb from "../components/breadcrumbs";
+import { fetchUserPublicRepositories } from "@/lib/fetchUserPublicRepositories";
+import Repositories from "@/app/components/repositories";
+import RepositoryAvatar from "@/app/components/repositoryAvatar";
+import NextBreadcrumb from "@/app/components/breadcrumbs";
 import { FaHome } from "react-icons/fa";
 import { TbMathGreater } from "react-icons/tb";
 

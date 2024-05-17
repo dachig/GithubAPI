@@ -1,6 +1,6 @@
-import { InputUsername } from "./components/home/inputUsername";
-import LandingPageHeader from "./components/home/landingPageHeading";
-import Polygon from "./components/home/polygon";
+import { InputUsername } from "@/app/components/home/inputUsername";
+import LandingPageHeader from "@/app/components/home/landingPageHeading";
+import Polygon from "@/app/components/home/polygon";
 
 export default function Home() {
   return (

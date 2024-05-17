@@ -2,7 +2,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import { handleClientScriptLoad } from "next/script";
 import { useState } from "react";
 import { FaRegStar } from "react-icons/fa";
 import { FaCode } from "react-icons/fa";

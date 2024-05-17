@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { fetchUserProfile } from "../../../lib/fetchUserProfile";
+import { fetchUserProfile } from "@/lib/fetchUserProfile";
 
 export default async function RepositoryAvatar({ username }: any) {
   const userData = await fetchUserProfile(username);

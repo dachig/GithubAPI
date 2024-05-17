@@ -1,6 +1,6 @@
-import { fetchRepositoryCommits } from "../../../../lib/fetchRepositoryCommits";
+import { fetchRepositoryCommits } from "@/lib/fetchRepositoryCommits";
 import Commits from "@/app/components/commits";
-import NextBreadcrumb from "../../components/breadcrumbs";
+import NextBreadcrumb from "@/app/components/breadcrumbs";
 import { FaHome } from "react-icons/fa";
 import { TbMathGreater } from "react-icons/tb";
 
