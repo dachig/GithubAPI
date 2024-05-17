@@ -32,7 +32,7 @@ export default function Commits({ commits }: any) {
           onChange={(e) => setFilterQuery(e.target.value)}
           type="text"
           placeholder="Search commit"
-          className="outline-none bg-white text-black rounded-r-none"
+          className="outline-none bg-white text-gray-900 rounded-r-none"
           value={filterQuery}
         />
         <Button

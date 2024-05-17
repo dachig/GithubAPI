@@ -4,17 +4,19 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Octokit } from "octokit";
 import { useRouter } from "next/navigation";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export function InputUsername() {
   const [username, setUsername] = useState("");
   const [notValidMessage, setNotValidMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const octokit = new Octokit({
     auth: process.env.GITHUB_ACCESS_TOKEN,
   });
-
   async function isUsernameValid(username: string) {
     try {
+      setLoading(true);
       const checkUser = await octokit.request("GET /users/{username}", {
         username,
         headers: {
@@ -23,14 +25,17 @@ export function InputUsername() {
       });
       if (checkUser.data.public_repos == 0) {
         setNotValidMessage("This user has no public repositories.");
+        setLoading(false);
         setTimeout(() => {
           setNotValidMessage("");
         }, 2000);
       } else {
         router.push(`/${username}`);
+        setLoading(false);
       }
     } catch (error) {
       setNotValidMessage("This username does not exist.");
+      setLoading(false);
       setTimeout(() => {
         setNotValidMessage("");
       }, 2000);
@@ -46,14 +51,25 @@ export function InputUsername() {
           onChange={(e) => setUsername(e.target.value)}
           type="search"
           placeholder="Enter a username"
-          className="text-white"
+          className="text-gray-900"
         />
         <Button
           type="button"
           onClick={() => isUsernameValid(username)}
           className="px-6 text-white hover:bg-primary-foreground"
         >
-          Search
+          {loading ? (
+            <ClipLoader
+              className="my-0 mx-auto block border-white"
+              color="#ffffff"
+              loading={loading}
+              size={25}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          ) : (
+            "Search"
+          )}
         </Button>
       </div>
       <span className="text-red-600 text-sm font-semibold">
