@@ -14,9 +14,10 @@ export function InputUsername() {
   const octokit = new Octokit({
     auth: process.env.GITHUB_ACCESS_TOKEN,
   });
+
   function isUsernameValid(username: string) {
     setLoading(true);
-
+    
     new Promise((resolve, reject) => {
       octokit
         .request("GET /users/{username}", {
