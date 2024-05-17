@@ -1,12 +1,10 @@
 "use client";
-import { Card } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Link from "next/link";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import CommitCard from "@/app/components/repositoryPage/commitCard";
 
-export default function Commits({ commits }: any) {
+export default function CommitsAndFilter({ commits }: any) {
   const [filterQuery, setFilterQuery] = useState("");
   const [filteredCommits, setFilteredCommits] = useState(commits);
   function handleSearchChange() {
@@ -49,31 +47,8 @@ export default function Commits({ commits }: any) {
           clear
         </Button>
       </div>
-      {filteredCommits.map((v: any, index: number) => (
-        <Card key={v.commit.tree.sha} className="px-4 py-2 flex flex-col gap-2">
-          <div>
-            <h3 className="font-medium text-sm text-gray-900">
-              {v.commit.message}
-            </h3>
-          </div>
-          <div className="flex items-center gap-2">
-            <Avatar className="w-8 h-8">
-              <AvatarImage
-                src={`${v.committer?.avatar_url}`}
-                alt="github-avatar"
-              />
-              <AvatarFallback>NA</AvatarFallback>
-            </Avatar>
-            <span className="tracking-tight text-sm text-gray-500">
-              {v.committer?.login && v.committer.login != "web-flow" ? (
-                <Link href={`/${v.committer.login}`}> {v.committer.login}</Link>
-              ) : (
-                v.commit.committer?.name
-              )}{" "}
-              commited on {v.commit.committer?.date?.substring(0, 10)}
-            </span>
-          </div>
-        </Card>
+      {filteredCommits.map((commit: any) => (
+        <CommitCard key={commit.commit.tree.sha} commit={commit} />
       ))}
     </div>
   );

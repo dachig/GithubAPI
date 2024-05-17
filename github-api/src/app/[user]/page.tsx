@@ -1,6 +1,6 @@
 import { fetchUserPublicRepositories } from "@/lib/fetchUserPublicRepositories";
-import Repositories from "@/app/components/repositories";
-import RepositoryAvatar from "@/app/components/repositoryAvatar";
+import RepositoriesAndFilter from "@/app/components/userPage/repositoriesAndFilter";
+import RepositoryAvatar from "@/app/components/userPage/repositoryAvatar";
 import NextBreadcrumb from "@/app/components/breadcrumbs";
 import { FaHome } from "react-icons/fa";
 import { TbMathGreater } from "react-icons/tb";
@@ -32,7 +32,7 @@ export default async function UserPage({
             <h2 className="text-md lg:text-lg tracking-tight text-gray-900 ">
               Public repositories
             </h2>
-            <Repositories
+            <RepositoriesAndFilter
               repositories={repositoriesData.repositories.data}
               username={params.user}
             />

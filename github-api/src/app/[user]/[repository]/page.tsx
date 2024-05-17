@@ -1,10 +1,10 @@
 import { fetchRepositoryCommits } from "@/lib/fetchRepositoryCommits";
-import Commits from "@/app/components/commits";
+import CommitsAndFilter from "@/app/components/repositoryPage/commitsAndFilter";
 import NextBreadcrumb from "@/app/components/breadcrumbs";
 import { FaHome } from "react-icons/fa";
 import { TbMathGreater } from "react-icons/tb";
 
-export default async function UserPage({
+export default async function RespositoryPage({
   params,
 }: {
   params: { user: string; repository: string };
@@ -31,7 +31,7 @@ export default async function UserPage({
             </h2>
           </div>
           <hr />
-          <Commits commits={commitsData.commits.data} />
+          <CommitsAndFilter commits={commitsData.commits.data} />
         </div>
       </div>
     </main>

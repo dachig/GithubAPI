@@ -14,34 +14,42 @@ export function InputUsername() {
   const octokit = new Octokit({
     auth: process.env.GITHUB_ACCESS_TOKEN,
   });
-  async function isUsernameValid(username: string) {
-    try {
-      setLoading(true);
-      const checkUser = await octokit.request("GET /users/{username}", {
-        username,
-        headers: {
-          "X-GitHub-Api-Version": "2022-11-28",
-        },
-      });
-      if (checkUser.data.public_repos == 0) {
-        setNotValidMessage("This user has no public repositories.");
+  function isUsernameValid(username: string) {
+    setLoading(true);
+
+    new Promise((resolve, reject) => {
+      octokit
+        .request("GET /users/{username}", {
+          username,
+          headers: {
+            "X-GitHub-Api-Version": "2022-11-28",
+          },
+        })
+        .then(resolve)
+        .catch(reject);
+    })
+      .then((checkUser: any) => {
+        if (checkUser.data.public_repos === 0) {
+          setNotValidMessage("This user has no public repositories.");
+          setLoading(false);
+          setTimeout(() => {
+            setNotValidMessage("");
+          }, 2000);
+        } else {
+          router.push(`/${username}`);
+          setTimeout(() => {
+            setLoading(false);
+          }, 500);
+        }
+      })
+      .catch((error: any) => {
+        setNotValidMessage("This username does not exist.");
         setLoading(false);
         setTimeout(() => {
           setNotValidMessage("");
         }, 2000);
-      } else {
-        router.push(`/${username}`);
-        setLoading(false);
-      }
-    } catch (error) {
-      setNotValidMessage("This username does not exist.");
-      setLoading(false);
-      setTimeout(() => {
-        setNotValidMessage("");
-      }, 2000);
-    }
+      });
   }
-
   return (
     <div>
       <div className="mt-6 flex max-w-md gap-x-4">
