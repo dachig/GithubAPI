@@ -9,7 +9,11 @@ export default async function UserPage({
 }: {
   params: { user: string; repository: string };
 }) {
-  const commitsData = await fetchRepositoryCommits(params.user, params.repository);
+  const commitsData = await fetchRepositoryCommits(
+    params.user,
+    params.repository
+  );
+  console.log(commitsData.commits.data.length);
   return (
     <main className="relative isolate overflow-hidden py-4 md:py-8 lg:py-16">
       <NextBreadcrumb
@@ -22,11 +26,13 @@ export default async function UserPage({
       />
       <div className="mx-auto gap-y-16 px-8 max-w-5xl">
         <div className="mx-auto flex flex-col gap-4">
-          <h2 className="text-2xl text-gray-500">
-            Commits for {params.repository}
-          </h2>
+          <div className="flex gap-4">
+            <h2 className="text-md lg:text-lg tracking-tight text-gray-900">
+              Commits for {params.repository}
+            </h2>
+          </div>
           <hr />
-          <Commits commits={commitsData} />
+          <Commits commits={commitsData.commits.data} />
         </div>
       </div>
     </main>

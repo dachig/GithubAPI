@@ -46,7 +46,7 @@ export function InputUsername() {
           onChange={(e) => setUsername(e.target.value)}
           type="search"
           placeholder="Enter a username"
-          className="bg-white/5 text-white"
+          className="text-white"
         />
         <Button
           type="button"

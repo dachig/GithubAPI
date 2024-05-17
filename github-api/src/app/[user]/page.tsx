@@ -29,7 +29,7 @@ export default async function UserPage({
             <RepositoryAvatar username={params.user} />
           </div>
           <div className="w-full flex flex-col gap-1">
-            <h2 className="text-md lg:text-lg tracking-tight text-gray-500 ">
+            <h2 className="text-md lg:text-lg tracking-tight text-gray-900 ">
               Public repositories
             </h2>
             <Repositories
