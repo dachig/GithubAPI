@@ -12,7 +12,7 @@ type TBreadCrumbProps = {
   capitalizeLinks?: boolean;
 };
 
-export default function NextBreadcrumb ({
+export default function NextBreadcrumb({
   homeElement,
   separator,
   containerClasses,
@@ -39,9 +39,9 @@ export default function NextBreadcrumb ({
             : link;
           return (
             <React.Fragment key={index}>
-              <li className={itemClasses}>
-                <Link href={href}>{itemLink}</Link>
-              </li>
+              <Link href={href}>
+                <li className={itemClasses}>{itemLink}</li>
+              </Link>
               {pathNames.length !== index + 1 && separator}
             </React.Fragment>
           );
@@ -49,4 +49,4 @@ export default function NextBreadcrumb ({
       </ul>
     </div>
   );
-};
+}
