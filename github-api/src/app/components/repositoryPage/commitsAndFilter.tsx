@@ -5,10 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchRepositoryCommits } from "@/lib/fetchRepositoryCommits";
 
-export default function CommitsAndFilter({ commits, user, repository }: any) {
+export default function CommitsAndFilter({ commits }: any) {
   const [filterQuery, setFilterQuery] = useState("");
   const [filteredCommits, setFilteredCommits] = useState(commits);
 
@@ -52,14 +50,7 @@ export default function CommitsAndFilter({ commits, user, repository }: any) {
           clear
         </Button>
       </div>
-      <InfiniteScroll
-        dataLength={40}
-        next={() => {
-          const data = fetchRepositoryCommits(user, repository, 2);
-        }}
-        hasMore={true}
-        loader={<p>loading...</p>}
-      >
+     
         {filteredCommits.map((commit: any) => (
           <Card
             key={commit.commit.tree.sha}
@@ -96,7 +87,6 @@ export default function CommitsAndFilter({ commits, user, repository }: any) {
             </div>
           </Card>
         ))}
-      </InfiniteScroll>
     </div>
   );
 }

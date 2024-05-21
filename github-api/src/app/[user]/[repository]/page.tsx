@@ -35,8 +35,6 @@ export default async function RespositoryPage({
           <hr />
           <CommitsAndFilter
             commits={commitsData.commits.data}
-            user={params.user}
-            repository={params.repository}
           />
         </div>
       </div>
