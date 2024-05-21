@@ -3,6 +3,7 @@ import CommitsAndFilter from "@/app/components/repositoryPage/commitsAndFilter";
 import NextBreadcrumb from "@/app/components/breadcrumbs";
 import { FaHome } from "react-icons/fa";
 import { TbMathGreater } from "react-icons/tb";
+import { useState } from "react";
 
 export default async function RespositoryPage({
   params,
@@ -11,7 +12,8 @@ export default async function RespositoryPage({
 }) {
   const commitsData = await fetchRepositoryCommits(
     params.user,
-    params.repository
+    params.repository,
+    1
   );
   return (
     <main className="relative isolate overflow-hidden py-4 md:py-8 lg:py-16">
@@ -31,7 +33,11 @@ export default async function RespositoryPage({
             </h2>
           </div>
           <hr />
-          <CommitsAndFilter commits={commitsData.commits.data} />
+          <CommitsAndFilter
+            commits={commitsData.commits.data}
+            user={params.user}
+            repository={params.repository}
+          />
         </div>
       </div>
     </main>

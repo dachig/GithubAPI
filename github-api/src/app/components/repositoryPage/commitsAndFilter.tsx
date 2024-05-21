@@ -5,10 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchRepositoryCommits } from "@/lib/fetchRepositoryCommits";
 
-export default function CommitsAndFilter({ commits }: any) {
+export default function CommitsAndFilter({ commits, user, repository }: any) {
   const [filterQuery, setFilterQuery] = useState("");
   const [filteredCommits, setFilteredCommits] = useState(commits);
+
   function handleSearchChange() {
     const filteredCommits = commits.filter((v: any) =>
       v.commit.message.toLowerCase().includes(filterQuery.toLowerCase())
@@ -49,42 +52,51 @@ export default function CommitsAndFilter({ commits }: any) {
           clear
         </Button>
       </div>
-      {filteredCommits.map((commit: any) => (
-        <Card
-          key={commit.commit.tree.sha}
-          className="px-4 py-2 flex flex-col gap-2"
-        >
-          <div>
-            <h3 className="font-medium text-sm text-gray-900">
-              {commit.commit.message}
-            </h3>
-          </div>
-          <div className="flex items-center gap-2">
-            <Avatar className="w-8 h-8">
-              <AvatarImage
-                src={`${commit.committer?.avatar_url}`}
-                alt="github-avatar"
-              />
-              <AvatarFallback>NA</AvatarFallback>
-            </Avatar>
-            <span className="tracking-tight text-sm text-gray-500">
-              {commit.committer?.login &&
-              commit.committer.login != "web-flow" ? (
-                <Link
-                  className="text-gray-900 hover:underline"
-                  href={`/${commit.committer.login}`}
-                >
-                  {" "}
-                  {commit.committer.login}
-                </Link>
-              ) : (
-                commit.commit.committer?.name
-              )}{" "}
-              commited on {commit.commit.committer?.date?.substring(0, 10)}
-            </span>
-          </div>
-        </Card>
-      ))}
+      <InfiniteScroll
+        dataLength={40}
+        next={() => {
+          const data = fetchRepositoryCommits(user, repository, 2);
+        }}
+        hasMore={true}
+        loader={<p>loading...</p>}
+      >
+        {filteredCommits.map((commit: any) => (
+          <Card
+            key={commit.commit.tree.sha}
+            className="px-4 py-2 mb-2 flex flex-col gap-2"
+          >
+            <div>
+              <h3 className="font-medium text-sm text-gray-900">
+                {commit.commit.message}
+              </h3>
+            </div>
+            <div className="flex items-center gap-2">
+              <Avatar className="w-8 h-8">
+                <AvatarImage
+                  src={`${commit.committer?.avatar_url}`}
+                  alt="github-avatar"
+                />
+                <AvatarFallback>NA</AvatarFallback>
+              </Avatar>
+              <span className="tracking-tight text-sm text-gray-500">
+                {commit.committer?.login &&
+                commit.committer.login != "web-flow" ? (
+                  <Link
+                    className="text-gray-900 hover:underline"
+                    href={`/${commit.committer.login}`}
+                  >
+                    {" "}
+                    {commit.committer.login}
+                  </Link>
+                ) : (
+                  commit.commit.committer?.name
+                )}{" "}
+                commited on {commit.commit.committer?.date?.substring(0, 10)}
+              </span>
+            </div>
+          </Card>
+        ))}
+      </InfiniteScroll>
     </div>
   );
 }
