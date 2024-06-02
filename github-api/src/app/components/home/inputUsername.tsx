@@ -38,9 +38,7 @@ export function InputUsername() {
           }, 2000);
         } else {
           router.push(`/${username}`);
-          setTimeout(() => {
-            setLoading(false);
-          }, 500);
+
         }
       })
       .catch((error: any) => {
