@@ -17,7 +17,7 @@ export function InputUsername() {
 
   function isUsernameValid(username: string) {
     setLoading(true);
-    
+
     new Promise((resolve, reject) => {
       octokit
         .request("GET /users/{username}", {
@@ -38,7 +38,6 @@ export function InputUsername() {
           }, 2000);
         } else {
           router.push(`/${username}`);
-
         }
       })
       .catch((error: any) => {
@@ -49,12 +48,20 @@ export function InputUsername() {
         }, 2000);
       });
   }
+  const handleKeyDown = (e: any) => {
+    if (e.key === "Enter") {
+      isUsernameValid(username);
+    } else if (e.key === "Escape") {
+      setUsername("");
+    }
+  };
   return (
     <div>
       <div className="mt-6 flex max-w-md gap-x-4">
         <Input
           id="github-username"
           required
+          onKeyDown={handleKeyDown}
           onChange={(e) => setUsername(e.target.value)}
           type="search"
           placeholder="Enter a username"
